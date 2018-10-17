@@ -1,14 +1,15 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-    mode: 'development',
+    mode: devMode ? 'development' : 'production',
     stats: 'errors-only',
     entry: './lib/js/src/App.js',
     output: {
         path: path.join(__dirname, '/dist'),
-        filename: '[name].bundle.js',
+        filename: devMode ? '[name].bundle.js' : '[name].[hash].js',
         publicPath: '/',
     },
     module: {
@@ -25,14 +26,12 @@ module.exports = {
             template: path.join(__dirname, '/public/template.html'),
             filename: path.join(__dirname + '/dist/index.html'),
             meta: {
-                // Will generate: <meta http-equiv="Content-Security-Policy" content="default-src https:">
-                // Which equals to the following http header: `Content-Security-Policy: default-src https:`
+                // Will generate: <meta http-equiv="set-cookie" content="value; expires=date; path=url">
+                // Which equals to the following http header: `set-cookie: value; expires=date; path=url`
                 'set-cookie': {
                     'http-equiv': 'set-cookie',
                     content: 'name=value; expires=date; path=url',
                 },
-                // Will generate: <meta http-equiv="set-cookie" content="value; expires=date; path=url">
-                // Which equals to the following http header: `set-cookie: value; expires=date; path=url`
             },
             cache: true,
             minify: true,
