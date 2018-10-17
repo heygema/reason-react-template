@@ -1,0 +1,12 @@
+{
+    "name": "__project_name__",
+    "reason": { "react-jsx": 2 },
+    "refmt": 3,
+    "bs-dependencies": ["reason-react"],
+    "sources": [
+        {
+            "dir": "src",
+            "subdirs": true
+        }
+    ]
+}
