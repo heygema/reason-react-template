@@ -4,7 +4,7 @@ module Hello = {
   let make = _children => {
     ...component,
     render: _self =>
-      <div> <h1> {ReasonReact.string("Hello World coy")} </h1> </div>,
+      <div> <h1> {ReasonReact.string("Hello World")} </h1> </div>,
   };
 };
 

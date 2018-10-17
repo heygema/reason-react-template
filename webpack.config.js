@@ -6,7 +6,9 @@ const devMode = process.env.NODE_ENV !== 'production';
 module.exports = {
     mode: devMode ? 'development' : 'production',
     stats: 'errors-only',
-    entry: './lib/js/src/App.js',
+    entry: {
+        main: path.join(__dirname, '/lib/js/src/App.js'),
+    },
     output: {
         path: path.join(__dirname, '/dist'),
         filename: devMode ? '[name].bundle.js' : '[name].[hash].js',
@@ -42,8 +44,24 @@ module.exports = {
         stats: 'errors-only',
         compress: true,
         port: 9000,
+        // It suppress error shown in console, so it has to be set to false.
+        quiet: false,
+        // It suppress everything except error, so it has to be set to false as well
+        // to see success build.
+        noInfo: false,
         stats: {
+            // Config for minimal console.log mess.
+            entrypoints: false,
             modules: false,
+            buildAt: false,
+            module: false,
+            assets: false,
+            colors: true,
+            version: false,
+            hash: false,
+            timings: false,
+            chunks: false,
+            chunkModules: false,
         },
     },
 };
