@@ -1,28 +1,42 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
     mode: devMode ? 'development' : 'production',
     stats: 'errors-only',
+
     entry: {
-        main: path.join(__dirname, '/lib/js/src/App.js'),
+        main: path.join(__dirname, '/src/App.bs.js'),
     },
     output: {
         path: path.join(__dirname, '/dist'),
-        filename: devMode ? '[name].bundle.js' : '[name].[hash].js',
+        filename: devMode ? '[name].js' : '[name].[hash].js',
         publicPath: '/',
     },
     module: {
         rules: [
             {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {},
+                    },
+                ],
+            },
+            {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
         ],
     },
     plugins: [
+        new MiniCssExtractPlugin({
+            filename: devMode ? '[name].css' : '[name].[hash].css',
+        }),
         new HtmlWebpackPlugin({
             title: '__project_name__',
             template: path.join(__dirname, '/public/template.html'),
@@ -41,7 +55,6 @@ module.exports = {
     ],
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
-        stats: 'errors-only',
         compress: true,
         port: 9000,
         // It suppress error shown in console, so it has to be set to false.

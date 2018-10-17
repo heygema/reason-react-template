@@ -1,4 +1,6 @@
 
+# bucklescripts
+*.bs.js
 
 # builds
 .merlin

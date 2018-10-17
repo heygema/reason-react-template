@@ -1,3 +1,5 @@
+[%bs.raw {|require("./main.css")|}]
+
 module Hello = {
   let component = ReasonReact.statelessComponent("Hello");
 

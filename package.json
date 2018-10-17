@@ -7,7 +7,7 @@
     "bsb:clean": "bsb -clean-world",
     "clean:dist": "rm -rf dist",
     "watch:bs": "yarn bsb:clean && yarn bsb:watch",
-    "wait-bucklescript": "wait-on ./lib/js/src/App.js",
+    "wait-bucklescript": "wait-on ./src/App.bs.js",
     "watch:js": "yarn wait-bucklescript && webpack-dev-server",
     "build": "npm-run-all bsb:clean bsb:make clean:dist && webpack --mode=\"production\"",
     "start": "npm-run-all --parallel watch:bs watch:js"
@@ -20,7 +20,9 @@
   "devDependencies": {
     "bs-platform": "^4.0.6",
     "css-loader": "^1.0.0",
+    "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.4",
     "npm-run-all": "^4.1.3",
     "style-loader": "^0.23.1",
     "wait-on": "^3.1.0",
