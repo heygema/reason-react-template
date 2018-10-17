@@ -2,6 +2,7 @@
   "name": "__project_name__",
   "license": "MIT",
   "scripts": {
+    "copy-css-to-lib": "find src -name '*.css' | cpio -pdm ./lib/js/",
     "bsb:make": "bsb -make-world",
     "bsb:watch": "bsb -make-world -w",
     "bsb:clean": "bsb -clean-world",
