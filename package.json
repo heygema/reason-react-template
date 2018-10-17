@@ -8,7 +8,7 @@
     "clean:dist": "rm -rf dist",
     "watch:bs": "yarn bsb:clean && yarn bsb:watch",
     "wait-bucklescript": "wait-on ./lib/js/src/App.js",
-    "watch:js": "yarn wait-bucklescript && yarn clean:dist && webpack-dev-server",
+    "watch:js": "yarn wait-bucklescript && webpack-dev-server",
     "build": "npm-run-all bsb:clean bsb:make clean:dist && webpack --mode=\"production\"",
     "start": "npm-run-all --parallel watch:bs watch:js"
   },
